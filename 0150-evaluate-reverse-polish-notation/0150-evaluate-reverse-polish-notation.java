@@ -1,57 +1,39 @@
 class Solution {
-    public int opeartion(String s  , int a , int b)
-    {
-        
-        switch(s) {
-            case "+":
-            return a+b;
+    public int evalRPN(String[] tokens) {
+        ArrayDeque<Integer> stack = new ArrayDeque();
 
-            case "-":
-            return a-b;
-
-            case "*":
-            return a*b;
-
-            case "/":
-            return a/b;
-
-            case "^":
-            return (int)Math.pow(a,b);
-
-           default: throw new IllegalArgumentException("Invalid operator: " + s);
-            
-
-        }
-        
-    }
-
-    public int evalRPN(String[] tokens) 
-    {
-
-        ArrayDeque<Integer> stack = new ArrayDeque<>();
-        int n = tokens.length;
-    
-         for(int i =0 ; i<n ;i++)
-         {
-            String token = tokens[i];
-            if(token.matches("-?\\d+"))
+        for(String token : tokens)
+        {
+            switch(token)
             {
-                stack.push(Integer.parseInt(token));
-            }
+                case "+":
+                stack.push(stack.pop() + stack.pop());
+                break;
 
-            else {
-            
-                
-                    int val2 = stack.pop();
-                    int val1 = stack.pop();
-                
+                case "-":
+                int b1= stack.pop();
+                int a1 = stack.pop();
+                stack.push(a1-b1);
+                break;
 
-                int res = opeartion(tokens[i],val1,val2);
-                stack.push(res);
+                case "*":
+                stack.push(stack.pop()*stack.pop());
+                break;
+
+                case "/":
+                int b2 = stack.pop();
+                int a2 = stack.pop();
+                stack.push(a2/b2);
+                break;
+
+               default :
+               stack.push(Integer.parseInt(token));
+
+
             }
-           
-         }
-          return stack.pop();
-    }    
-     
+        }
+
+        return stack.pop();
+
+    }
 }
