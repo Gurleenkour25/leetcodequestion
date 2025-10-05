@@ -11,15 +11,8 @@ class Solution {
             int  currarea = width*h;
             maxi = Math.max(maxi,currarea);
 
-           if( height[lp]<height[rp] )
-             {
-                lp++;
-              } 
-              
-            else
-            {
-                rp--;
-            }
+           while(lp<rp && height[lp]<=h) lp++;
+            while(lp<rp && height[rp]<=h) rp--;
         }
 
         return maxi;
