@@ -8,7 +8,7 @@ class Solution {
         if(vote == 0) {
             cand = nums[i];
         }
-        if(nums[i] == cand){
+       else if(nums[i] == cand){
           vote++;
         }
         else {
