@@ -1,29 +1,33 @@
 class Solution {
     public boolean isSubsequence(String s, String t) {
-        if(s.length()==0)
+        if(s.length()== 0)
         {
             return true;
         }
-         if(t.length()==0)
+
+       
+        if(t.length()== 0)
         {
             return false;
         }
+
+        int j =0;
        char[] arr = s.toCharArray();
        char[] arr2 = t.toCharArray();
-      int  j=0;
-       for(int i = 0 ;i<arr2.length ;i++)
-       {
-        if( j<arr.length && arr[j] == arr2[i])
+
+        for(int i = 0 ;i < arr2.length ; i++)
         {
-            j++;
+            if(j < arr.length && arr2[i] == arr[j])
+            {
+                j++;
+            }
         }
-       } 
 
-       if(j==arr.length)
-       {
-        return true;
-       }
+        if(j == s.length())
+        {
+            return true;
+        }
 
-       return false;
+        return false;
     }
 }
