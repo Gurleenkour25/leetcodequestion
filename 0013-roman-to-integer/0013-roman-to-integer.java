@@ -1,30 +1,42 @@
 class Solution {
     public int romanToInt(String s) {
-     Map<Character,Integer> map = new HashMap<>();
-     map.put('I',1);  
-     map.put('V',5);  
-    map.put('X',10);
-    map.put('L',50);
-     map.put('C',100);
-     map.put('D',500);
-    map.put('M',1000);
-    
-   int number = 0;
-    char[] arr = s.toCharArray();
+        int n = s.length();
+        int prev = 0 ;
+        int number = 0;
 
-    for(int i =0 ; i<arr.length ; i++)
-    {
-       int value = map.get(arr[i]);
-       if(i+1 < arr.length  && value < map.get(arr[i+1]))
-       {
-         number -= value;
-       }
-       else {
-        number += value;
-       }
+        for(int i = n-1 ; i>=0 ; i--)
+        {
+           int value= switch(s.charAt(i))
+            {
+                case 'I'-> 1;
+               
+                case 'V'-> 5;
+               
+                case 'X'-> 10;
+              
+                case 'L'-> 50;
+             
+                case 'C'-> 100;
+           
+                case 'D'->500;
+        
+                case 'M'->1000;
+      
+                default-> 0;
+           
+            };
+           if(value < prev)
+           {
+             number -= value;
+           }
+           else 
+           {
+             number += value;
+           }
 
+           prev = value;
+        }
+
+        return number;
     }
-       return number;
-    }
-
 }
