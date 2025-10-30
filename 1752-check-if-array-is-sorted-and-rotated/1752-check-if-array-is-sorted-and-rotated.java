@@ -1,23 +1,17 @@
 class Solution {
-    public boolean check(int[] nums) {
-        int n = nums.length;
+    public boolean check(int[] arr) {
         int count = 0;
-        for(int i = 1 ; i< n ;i++)
+       for(int i = 1 ; i < arr.length ; i++) 
+       {
+          if(arr[i] < arr[i-1]) {
+            count++;
+          }
+       } 
+        if(arr[arr.length -1] > arr[0])
         {
-           if(nums[i] < nums[i-1])
-           {
-            count++;
-           }
-        }
-
-        if(nums[n-1] > nums[0]) {
             count++;
         }
 
-        if(count <= 1){
-            return true;
-        }
-
-        return false;
+       return  count <=1? true : false;
     }
 }
