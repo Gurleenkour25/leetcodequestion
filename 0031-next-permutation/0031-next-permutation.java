@@ -3,7 +3,7 @@ class Solution {
         int n = nums.length;
         int pivot = -1;
 
-        for(int i = n-2 ; i >=0 ; i--)
+        for(int i= n-2 ;i >= 0 ; i--)
         {
             if(nums[i] < nums[i+1])
             {
@@ -14,28 +14,25 @@ class Solution {
 
         if(pivot == -1)
         {
-            reverse(nums,0,n-1);
-
-            return;
+          reverse(nums, 0 ,n-1);
+          return;
         }
 
-        for(int i = n-1 ; i > pivot ;i--)
-        {
-            if(nums[i] > nums[pivot])
-            {
-                int temp = nums[i];
-                nums[i] = nums[pivot];
-                nums[pivot] = temp;
+        for(int i= n-1 ; i>= pivot ; i--) {
+            if(nums[i] > nums[pivot]) {
+            int temp = nums[i];
+            nums[i] = nums[pivot];
+            nums[pivot] = temp;
+            break;
 
-                break;
             }
-         }
+        }
+       
+       reverse(nums,pivot+1,n-1);
 
-         reverse(nums,pivot+1,n-1);
     }
 
-    public void reverse(int[]arr , int start , int end)
-    {
+    public void reverse(int[] arr , int start , int end) {
         while(start < end)
         {
             int temp = arr[start];
