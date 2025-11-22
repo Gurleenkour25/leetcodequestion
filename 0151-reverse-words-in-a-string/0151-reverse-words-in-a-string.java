@@ -1,61 +1,56 @@
 class Solution {
+    public void reversee(StringBuilder str, int start, int end)
+    {
+        while(start < end)
+        {
+        char temp = str.charAt(start);
+        str.setCharAt(start, str.charAt(end));
+        str.setCharAt(end , temp);
+        start++;
+        end--;
+        }
+    }
+    public String reverseWords(String s) {
+       int n = s.length();
+       int i = 0 ;
+       int j = n -1;
 
-    // Custom reverse function
-    private void reverse(char[] arr, int start, int end) {
-        while (start < end) {
-            char temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
-            end--;
+       while(i < n && s.charAt(i)==' ')i++; 
+       while(j >= 0 && s.charAt(j)==' ')j--;
+        
+
+        
+StringBuilder str = new StringBuilder();
+
+       while(i <= j) 
+       {
+        if(s.charAt(i) != ' ')
+        {
+            str.append(s.charAt(i));
+        }
+        
+          else if(str.charAt(str.length() -1) != ' ')
+           {
+             str.append(' ');
+           }
+    
+          i++;
+       }
+
+      str.reverse();
+     
+     int end = 0;
+    for(int start = 0 ; start < str.length() ;start++)
+    {
+        if(str.charAt(start) == ' ')
+        {
+            reversee(str,end,start-1);
+            end = start+1;
         }
     }
 
-    public String reverseWords(String s) {
+    reversee(str,end, str.length()-1);
 
-        char[] arr = s.toCharArray();
-        int n = arr.length;
-        int i = 0, j = 0;
-
-        // Skip leading spaces
-        while (i < n && arr[i] == ' ') i++;
-
-        // Process characters and remove extra spaces
-        while (i < n) {
-
-            // Copy non-space characters
-            while (i < n && arr[i] != ' ') {
-                arr[j++] = arr[i++];
-            }
-
-            // Skip extra spaces between words
-            while (i < n && arr[i] == ' ') i++;
-
-            // Add a single space if not at end
-            if (i < n) {
-                arr[j++] = ' ';
-            }
-        }
-
-        // Resize the array effectively (string from 0 to j)
-        String trimmed = new String(arr, 0, j);
-
-        // Convert trimmed string back to char array
-        char[] finalArr = trimmed.toCharArray();
-        int len = finalArr.length;
-
-        // Step 1: Reverse the entire string
-        reverse(finalArr, 0, len - 1);
-
-        // Step 2: Reverse each word
-        int start = 0;
-        for (i = 0; i <= len; i++) {
-            if (i == len || finalArr[i] == ' ') {
-                reverse(finalArr, start, i - 1);
-                start = i + 1;
-            }
-        }
-
-        return new String(finalArr);
+    return str.toString();
     }
 }
