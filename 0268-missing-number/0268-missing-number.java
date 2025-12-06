@@ -1,13 +1,16 @@
 class Solution {
     public int missingNumber(int[] nums) {
-    int ans = 0;
-    int n = nums.length;
 
-    for(int i = 0 ; i<n ;i++)
-    {
-        ans += nums[i];
-    } 
+        int n = nums.length;
+        int naturalsum = n *(n+1)/2;
 
-     return  n * (n+1)/2 - ans;
+        int sum = 0;
+
+        for(int i = 0 ; i < nums.length ; i++)
+        {
+            sum += nums[i];
+        }
+         
+         return naturalsum - sum;
     }
 }
