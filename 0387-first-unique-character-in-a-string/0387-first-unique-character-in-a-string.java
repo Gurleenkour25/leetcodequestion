@@ -11,11 +11,11 @@ class Solution {
         {
             if(mm.getValue() == 1)
             {
-                 c = mm.getKey();
-                 break;
+               
+                 return s.indexOf(mm.getKey());
             }
         }
 
-        return s.indexOf(c);
+        return -1;
     }
 }
