@@ -1,6 +1,5 @@
 class Solution {
     public void sortColors(int[] nums) {
-
         int n = nums.length;
         int start = 0;
         int mid = 0;
@@ -8,29 +7,32 @@ class Solution {
 
         while(mid <= end)
         {
-            if(nums[mid] == 0)
-            {
-                int temp = nums[start];
-                nums[start] = nums[mid];
-                nums[mid] = temp;
-                
-                start++;
-                mid++;
-            }
+           if(nums[mid]==0)
+           {
+              swap(nums,start,mid);
+              start++;
+              mid++;
+           }
 
-            else if(nums[mid] == 1)
-            {
-                mid++;
-            }
+           else if(nums[mid] == 1)
+           {
+             mid++;
+           }
 
-            else {
-                int temp2 = nums[end];
-                nums[end] = nums[mid];
-                nums[mid] = temp2;
-
-                end--;
-            }
+           else{
+              swap(nums,mid,end);
+             end--;
+           }
         }
         
     }
+    
+    public void swap( int []nums, int i , int j)
+    {
+         int temp = nums[i];
+         nums[i] = nums[j];
+         nums[j] = temp;
+
+    }
+
 }
